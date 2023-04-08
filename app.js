@@ -16,10 +16,9 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())   
 
 
-// app.use('/', require('./routers/routerFront'));                     //ruta Front
-// app.use('/dashboard-usuario', require('./routers/routerFrontUser')); // ruta usuario películas favoritas
-// app.use('/dashboard-admin', require('./routers/routerFrontAdmin'));
-
+//rutas
+app.use("/", require("./routers/user"))
+app.use("/admin", require("./routers/admin"))
 
 //404
 app.use((req, res, next) => {
