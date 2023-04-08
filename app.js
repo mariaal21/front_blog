@@ -15,6 +15,11 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())   
 
 
+app.set("view engine", "ejs");
+//establish where views folders will be
+app.set("views", __dirname + "/views");
+
+
 //rutas
 app.use("/", require("./routers/user"))
 app.use("/admin", require("./routers/admin"))

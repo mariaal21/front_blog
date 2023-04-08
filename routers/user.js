@@ -11,7 +11,9 @@ const {  getAllArticulos,
     logout } = require("../controllers/usercontroller")
 
 
-    router.get("/articulos/:page", getAllArticulos)
+    //router.get("/articulos/:page", getAllArticulos)
+    router.get("/articulos", getAllArticulos)
+
 
     router.get("/entry/:title/:email", getArticulo)
 

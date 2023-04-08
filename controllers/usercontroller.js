@@ -1,3 +1,4 @@
+const { response } = require("express");
 const { consulta } = require("../helpers/fetch")
 
 const limit = 5
@@ -5,25 +6,27 @@ const skip = 5
 
 //Login 
 const LogIn = (req, res) => {
-    res.render("views/user/index");
+    res.render("user/index");
 }
 
 const getAllArticulos = async (req, res) => {
+        const {page} =req.params
         const method = "GET"
-        const urlEnd = `all-entries/${limit}/${skip * (req.params.page - 1)}`
+        const urlEnd = `allArticles/${limit}/${skip * (page - 1)}`
         try {
-            const data = await consulta(`${process.env.URLBASE}${urlEnd}`, method)
-
-        if (!data.ok) {
-            throw data.msg
+            const response = await consulta(`${process.env.URLBASE}${urlEnd}`, method)
+       
+        if (!response.ok) {
+            console.log("hola")
         }
 
-        //rutas cambiadas
-        const entries = data.entries
-        res.render("userViews/getAllArticulos", { entries });
+        // console.log(data)
+        const articles = response.articles
+        res.render("user/articulos", { articles });
+       
 
     } catch (error) {
-        res.render("userViews/getAllArticulos", { error });
+        res.render("user/articulos", { error });
     }
 }
 
@@ -77,7 +80,7 @@ const searchArticulo = async (req, res) => {
 
 //Login 
 const LoginPage = (req, res) => {
-    res.render("views/user/login");
+    res.render("user/login");
     
 }
 
@@ -122,3 +125,4 @@ module.exports =
     LogIn,
     logout
 }
+

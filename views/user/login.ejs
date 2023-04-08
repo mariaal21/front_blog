@@ -1,15 +1,12 @@
-<%- include("./templates/headeruser") %><%-
-include("./userTemplates/navUser") %>
-<h1>Login</h1>
-<form id="login-form" action="/reader/verification" method="post">
-  <input type="text" name="email" id="email" placeholder="Enter email" />
 
-  <input
-    type="text"
-    name="password"
-    id="password"
-    placeholder="Enter password"
-  />
+
+<h1>Login</h1>
+
+<!-- falta el action -->
+<form id="login"  method="post">
+  <input type="text" name="email" id="email" placeholder="Introduce el email" />
+
+  <input type="text" name="password" id="password" placeholder="escribe la contraseña"/>
 
   <input type="submit" />
 </form>
@@ -20,5 +17,4 @@ include("./userTemplates/navUser") %>
   <% } %>
 </div>
 
-<a id="back-button" href="/">Home</a>
-<%- include("./templates/footeruser") %>
+<a id="atras" href="/">Home</a>

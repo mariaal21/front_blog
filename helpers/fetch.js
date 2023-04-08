@@ -1,5 +1,5 @@
 //Fetch
-const consulta = async (url, method, body) => {
+const consulta = async (url, method, body = {}) => {
 
 
     body = JSON.stringify(body);
@@ -23,6 +23,7 @@ const consulta = async (url, method, body) => {
 
         const request = await fetch(url, options);
         const response = await request.json();
+   
         
         return {
             ok: true,
@@ -36,5 +37,6 @@ const consulta = async (url, method, body) => {
     };
 };
   
+
 
 module.exports = { consulta }
