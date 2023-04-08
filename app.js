@@ -3,7 +3,6 @@ const cors = require('cors');
 require('dotenv').config();
 
 
-
 const app = express();                              
 const port = process.env.PORT || 4005;
 
@@ -20,14 +19,11 @@ app.use(express.json())
 app.use("/", require("./routers/user"))
 app.use("/admin", require("./routers/admin"))
 
-//404
 app.use((req, res, next) => {
-
-    res.status(404).render('404', {
-        error: '404',
-        msg: 'Página no encontrada'
+    res.status(404).render("404", {
+        titulo: "404",
+        texto: "La pagina no se encuentra",
     });
-
 });
 
 

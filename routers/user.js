@@ -23,7 +23,7 @@ const {  getAllArticulos,
 
     router.post("/reader/verification", loginUser)
     //proteger url middleware
-    // router.use(validateReader)
+    // router.use(validate)
 
 
     router.get("/", LogIn)

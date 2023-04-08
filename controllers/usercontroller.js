@@ -1,11 +1,11 @@
 const { consulta } = require("../helpers/fetch")
 
-const limit = 10
-const skip = 10
+const limit = 5
+const skip = 5
 
 //Login 
 const LogIn = (req, res) => {
-    res.render("userViews/index");
+    res.render("views/user/index");
 }
 
 const getAllArticulos = async (req, res) => {
@@ -77,7 +77,8 @@ const searchArticulo = async (req, res) => {
 
 //Login 
 const LoginPage = (req, res) => {
-    res.render("userViews/login-form");
+    res.render("views/user/login");
+    
 }
 
 //esta funcion es para comprobar el user
