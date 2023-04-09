@@ -15,22 +15,22 @@ const {
 
 
 
-router.get("/entries/:email/:page", getArticulos)
+router.get("/articulos/:email", getArticulos) //Articulosx
 
-router.get("/entry/:title/:email", getArticulo)
+router.get("/articulo/:email", getArticulo)  //articulo
 
-router.post("/create/:email", upload, crearArticulo)
-// router.post("/create/:email", crearArticulo)
-
-router.get("/form/new/:email", nuevoArticulo);
-
-router.get("/form/update/:title/:email", actualizarArticuloform);
-
-router.post("/update/:title/:email", upload, actualizarArticulo)
-// router.post("/update/:title/:email", actualizarArticulo)
+router.post("/nuevo/:email", upload, crearArticulo) //nuevoform
 
 
-router.get("/delete/:title/:email", eliminarArticulo)
+router.get("/nuevo/formulario", nuevoArticulo); //nuevo form
+
+router.get("/form/nuevo/:email", actualizarArticuloform);
+
+router.post("/nuevo/:email", upload, actualizarArticulo)
+
+
+
+router.get("/eliminar/:email", eliminarArticulo)
 
 
 module.exports = router

@@ -12,20 +12,20 @@ const getArticulos = async (req, res) => {
     const skip = (page - 1) * limit;
 
 
-    const url = `${process.env.URLBASE}entries/${email}/${limit}/${skip}`;
+    const url = `${process.env.URLBASE}articles/${email}/${limit}/${skip}`;
     
     try {
       const response = await consulta(url, method);
   
       if (response.ok) {
         const entries = response.entries;
-        res.render("adminViews/showEntries", { entries, email });
+        res.render("admin/articulosAdmin", { entries, email });
       } else {
         throw response.msg;
       }
     } catch (error) {
       console.log(error);
-      res.render("adminViews/showEntries", { error, email });
+      res.render("admin/articulosAdmin", { error, email });
     }
   };
   
@@ -34,20 +34,20 @@ const getArticulos = async (req, res) => {
 const getArticulo = async (req, res) => {
     const { title, email } = req.params;
     const method = "GET";
-    const url = `${process.env.URLBASE}entry/${title.replaceAll("_", " ")}/${email}`;
+    const url = `${process.env.URLBASE}article/${title.replaceAll("_", " ")}/${email}`;
   
     try {
       const response = await consulta(url, method);
   
       if (response.ok) {
         const entry = response.entry[0];
-        res.render("adminViews/showOneEntry", { entry, email });
+        res.render("admin/articuloAdmin", { entry, email });
       } else {
         throw response.msg;
       }
     } catch (error) {
       console.log(error);
-      res.render("adminViews/showOneEntry", { error, email });
+      res.render("admin/articuloAdmin", { error, email });
     }
   };
   
@@ -55,7 +55,7 @@ const getArticulo = async (req, res) => {
 //render form to create new entry
 const nuevoArticulo = (req, res) => {
     const { email } = req.params
-    res.render("adminViews/newEntryForm", { email });
+    res.render("admin/nuevoForm", { email });
 };
 
 //create new entry
@@ -70,13 +70,12 @@ const crearArticulo = async (req, res) => {
         const data = await consulta(`${process.env.URLBASE}${urlEnd}`, method, body);
 
         if (data.ok) {
-            console.log("create cont", email);
-            res.redirect(`/admin/entries/${email}/1`);
+            res.redirect(`admin/nuevoForm/${email}`);
         } else {
             throw data.errors;
         }
     } catch (error) {
-        res.render("adminViews/newEntryForm", { email, error });
+        res.render("admin/nuevoForm", { email, error });
     }
 };
 
@@ -87,12 +86,12 @@ const actualizarArticuloform = async (req, res) => {
 
     try {
         const { entry } = await consulta(`${process.env.URLBASE}${urlEnd}`, method);
-        res.render("adminViews/updateEntryForm", {
+        res.render("admin/actualizarForm", {
             entry: entry[0],
             email
         });
     } catch (error) {
-        res.render("adminViews/updateEntryForm", {
+        res.render("admin/actualizarForm", {
             mistake: error,
             email
         });
@@ -113,11 +112,11 @@ const actualizarArticulo = async (req, res) => {
         if (!data.ok) {
             throw data.errors
         } else {
-            res.redirect(`/admin/entries/${email}/1`)
+            res.redirect(`/admin/articulo/${email}/1`)
         }
     } catch (error) {
         console.log(error)
-        res.render("adminViews/updateEntryForm", {
+        res.render("admin/actualizarForm", {
             error,
             email,
             title
@@ -135,7 +134,7 @@ const eliminarArticulo = async (req, res) => {
       const response = await consulta(url, method, body);
       
       if (response.ok) {
-        res.redirect(`/admin/entries/${email}/1`);
+        res.redirect(`/admin/articulo/${email}/1`);
       } else {
         throw response.msg;
       }

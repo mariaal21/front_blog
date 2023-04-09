@@ -9,28 +9,26 @@ const {  getAllArticulos,
     loginUser,
     LogIn,
     logout } = require("../controllers/usercontroller")
+ 
 
 
-    //router.get("/articulos/:page", getAllArticulos)
-    router.get("/articulos", getAllArticulos)
+    router.get("/articulos", getAllArticulos) //esta
 
 
-    router.get("/entry/:title/:email", getArticulo)
+    router.get("/articulo/:email", getArticulo) //esta
 
-    router.get("/form/search", searchArticulosForm)
+    router.get("/form/buscar", searchArticulosForm) //esta
 
-    router.post("/search/:page", searchArticulo)
+    router.post("/buscar/:search", searchArticulo) //esta
 
-    router.get("/login", LoginPage)
+    router.get("/login", LoginPage) //esta 
 
-    router.post("/reader/verification", loginUser)
-    //proteger url middleware
-    // router.use(validate)
+    router.post("/form/registrarse", loginUser)//esta
 
 
-    router.get("/", LogIn)
+    router.get("/", LogIn) //esta
 
-    router.get("/logout", logout)
+    router.get("/logout", logout) //esta
 
 
 module.exports = router

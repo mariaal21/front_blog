@@ -35,7 +35,7 @@ const getArticulo = async (req, res) => {
     const title = params.title;
     const email = params.email;
     const method = "GET";
-    const urlEnd = `entry/${title.replaceAll("_", " ")}/${email}`;
+    const urlEnd = `articles/${title.replaceAll("_", " ")}/${email}`;
     let data;
 
     try {
@@ -46,15 +46,15 @@ const getArticulo = async (req, res) => {
         }
 
         const entry = data.entry[0]
-        res.render("userViews/showDetailView", { entry });
+        res.render("user/vistaDetalle", { entry });
 
     } catch (error) {
-        res.render("userViews/showDetailView", { error });
+        res.render("user/vistaDetalle", { error });
     }
 }
 
 const searchArticulosForm = (req, res) => {
-    res.render("userViews/searchForm");
+    res.render("user/barraBuscar");
 }
 
 const searchArticulo = async (req, res) => {
@@ -71,10 +71,10 @@ const searchArticulo = async (req, res) => {
         }
 
         const entries = data.entries
-        res.render("userViews/searchResults", { entries, search });
+        res.render("user/busqueda", { entries, search });
 
     } catch (error) {
-        res.render("userViews/searchResults", { error, search });
+        res.render("user/busqueda", { error, search });
     }
 }
 
@@ -97,13 +97,9 @@ const loginUser = async (req, res) => {
             throw data.msg
         }
 
-        res.cookie('email', body.email, { http: true, secure: true, sameSite: 'strict', expires: new Date('2023-12-20') })
-        res.clearCookie('user')
-        req.header.authorization = data.token
-        res.redirect("/entries/1")
 
     } catch (error) {
-        res.render("userViews/login-form", { error })
+        res.render("user/formularioInicio", { error })
     }
 };
 

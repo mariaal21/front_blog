@@ -16,7 +16,7 @@ app.use(express.json())
 
 
 app.set("view engine", "ejs");
-//establish where views folders will be
+
 app.set("views", __dirname + "/views");
 
 
